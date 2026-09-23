@@ -77,3 +77,15 @@ Shot 3: rocky shoreline: she plummets vertically from the sky and slams into a t
 
 Sound: no music. Thunder-crack, concussive boom, sonic whoosh, crashing spray, heavy impact.
 ```
+
+## Take 3 review
+- Shot 1 (portal burst) and shot 3 (landing) are keepers; wings are much bigger.
+- Shot 2 failed: she is only a gold streak for ~0.5s, then 4s of an empty wave.
+  Pose still upright with bent arms, not fists forward.
+- Plan: regenerate shot 2 alone (5s) with the prompt below, splice it into take 3.
+
+### Shot 2 only (Seedance 2.5, 5s, 16:9, 3 photos attached)
+
+```
+One continuous shot, real-time speed, NOT slow motion, photorealistic, 35mm film grain. Night, dark ocean, full moon. Camera low just above the water, side angle, static. The valkyrie from the reference images — gold winged Spartan helmet, long wavy strawberry-blonde hair, white breastplate with a crimson V, crimson pleated skirt, gold armour — flies across the frame from left to right, clearly visible the whole time, skimming a few metres above the sea. Superman flight pose: body horizontal, both arms locked straight out in front with both fists clenched and leading, legs straight together behind her. Colossal white wings, each longer than a bus, spread wide and rigid, not flapping. Her speed rips the ocean into a V-shaped wake with walls of spray exploding up behind her. Golden light and lightning trail off her body. Motion blur on the water, she stays sharp. Sound: roaring wind, sonic whoosh, crashing spray.
+```
