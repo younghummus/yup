@@ -1,0 +1,84 @@
+# Seedance-ready shot prompts for the valkyrie portal sequence.
+# Built from shots/*.txt using OpenMontage's seedance-2-0 skill: format opener,
+# identity lock against the reference images, temporal beats, inline VFX, sound block.
+# produce.py reads this file.
+
+defaults:
+  provider: seedance            # video_selector preferred_provider
+  operation: reference_to_video # character images anchor identity
+  aspect_ratio: "16:9"          # matches the previous 1280x720 take
+  resolution: "720p"
+  generate_audio: true
+  reference_images:
+    - reference/character/01-front-night-portal.jpg
+    - reference/character/02-front-flying-sunset.png
+    - reference/character/03-back-three-quarter.png
+
+identity_lock: >-
+  [identity_lock] The same valkyrie from the reference images, consistent across all shots,
+  maintain exact appearance from reference image, no deformation, no drift. Polished gold
+  Spartan-style full helmet with T-shaped visor and small golden wings on its sides, face
+  always hidden; long wild wavy strawberry-blonde hair; white scale-textured breastplate with
+  a bold crimson V chevron trimmed in gold; gold shoulder pauldrons, gold belt, gold segmented
+  bracers; short crimson pleated battle skirt flecked with gold; gold knee-high armoured
+  greaves. Colossal white feathered wings, wingspan four times her body height, warm golden
+  light glowing through the feathers. Do not alter clothing category or primary color.
+
+style: >-
+  Photorealistic, 35mm film quality, ARRI ALEXA aesthetic, heavy film grain, halation on
+  highlights, deep moonlit blue-black night palette cut by warm gold light, no cartoon, no 3D
+  render look, no text.
+
+shots:
+  - id: shot-1-portal-burst
+    duration: "4"
+    prompt: >-
+      Single continuous shot, static low-angle camera, no cuts, no zoom, no camera movement.
+      Night over a dark open ocean, full moon, Sydney Harbour skyline tiny and far on the horizon.
+      {identity_lock}
+      0-1s: the air above the water violently tears open into a blazing golden ring portal
+      crackling with radiant lightning [VFX: jagged gold-white lightning arcs whipping around
+      the ring rim, embers spiralling inward].
+      1-4s: the valkyrie explodes out of the portal straight toward camera at extreme speed,
+      wings snapping fully open, wingtips breaking past the frame edges; a shockwave ripples out
+      from the portal and flattens the water below into a spreading ring of spray
+      [VFX: golden radiant light pouring from her body, heavy motion blur on wings].
+      {style}
+      Sound: no music, only raw SFX: a tearing thunder-crack as the portal opens, crackling
+      electricity, a concussive boom as the shockwave hits the water, rushing wind.
+
+  - id: shot-2-ocean-flyby
+    duration: "5"
+    prompt: >-
+      Single continuous shot, camera locked just above the water surface, completely static,
+      no cuts, no zoom, no panning; violent camera shake only as she passes.
+      Same night ocean, full moon, moonlight glittering on black water.
+      {identity_lock}
+      0-1s: a golden speck on the far horizon rushing closer.
+      1-3s: the valkyrie rockets from the far background to the foreground skimming a few
+      metres above the sea, colossal wings spread, their huge shadow racing across the water;
+      the force of her flight rips the ocean apart into a sharp V-shaped wake, towering walls
+      of spray peeling away on both sides along her entire path
+      [VFX: golden light and small lightning arcs trailing off her armour and wingtips].
+      3-5s: she whips past the camera and out of frame, spray and mist hanging in the moonlight,
+      the camera shaking hard in her wake.
+      {style}
+      Sound: no music, a rising roar of wind into a deafening whoosh as she passes, sea spray
+      hissing and crashing, a trailing electric crackle.
+
+  - id: shot-3-shoreline-landing
+    duration: "6"
+    prompt: >-
+      Single continuous shot, medium-wide, static camera, no cuts, no zoom.
+      Rocky shoreline at night, black ocean behind, full moon, Sydney Harbour skyline
+      glittering in the distance.
+      {identity_lock}
+      0-2s: the valkyrie drops from the sky and slams down in a crouch, the rock fractures
+      beneath her, a ring of dust and sea spray explodes outward on impact.
+      2-4s: she rises into a battle stance, weight low, fists raised.
+      4-6s: her colossal wings sweep fully open behind her, filling the frame edge to edge
+      [VFX: golden radiant light pulsing across her armour with small arcs of lightning,
+      dramatic warm rim light against the moonlit blue].
+      {style}
+      Sound: no music, a heavy ground-shaking impact, cracking stone, spray raining down,
+      a sweeping rush of feathers as the wings open, low electric hum.
