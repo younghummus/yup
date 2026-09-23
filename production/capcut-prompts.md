@@ -89,3 +89,20 @@ Sound: no music. Thunder-crack, concussive boom, sonic whoosh, crashing spray, h
 ```
 One continuous shot, real-time speed, NOT slow motion, photorealistic, 35mm film grain. Night, dark ocean, full moon. Camera low just above the water, side angle, static. The valkyrie from the reference images — gold winged Spartan helmet, long wavy strawberry-blonde hair, white breastplate with a crimson V, crimson pleated skirt, gold armour — flies across the frame from left to right, clearly visible the whole time, skimming a few metres above the sea. Superman flight pose: body horizontal, both arms locked straight out in front with both fists clenched and leading, legs straight together behind her. Colossal white wings, each longer than a bus, spread wide and rigid, not flapping. Her speed rips the ocean into a V-shaped wake with walls of spray exploding up behind her. Golden light and lightning trail off her body. Motion blur on the water, she stays sharp. Sound: roaring wind, sonic whoosh, crashing spray.
 ```
+
+## v4 — previz-driven (the reliable method)
+
+Text alone keeps producing slow motion, an upright pose and small wings. Instead,
+`production/previz.py` renders a 15s animatic (`renders/valkyrie-previz.mp4`) that
+locks timing, camera, fists-first pose and wing scale. Seedance follows a reference
+video's motion far more strictly than words, so it only has to make it photoreal.
+
+**CapCut:** Seedance 2.5 · 15s · 16:9. Attach, in this order:
+1. `renders/valkyrie-previz.mp4` (motion)
+2. `reference/stills/huge-wings-flying.jpg` (her + wing size)
+3. `reference/stills/huge-wings-stance.jpg` (her + wing size)
+4. `reference/character/01-front-night-portal.jpg` (costume detail)
+
+```
+Remake @Video1 as photorealistic live-action cinema. Copy @Video1 exactly: the same three shots, the same cuts, the same timing, the same camera positions, the same speed of every movement, the same poses and the same wing size. Do not slow anything down. The flat cartoon figure in @Video1 is the valkyrie from @Image1, @Image2 and @Image3: gold winged Spartan helmet, face hidden, long wavy strawberry-blonde hair, white breastplate with a crimson V, crimson pleated skirt, gold bracers and greaves, colossal white feathered wings as huge as in @Image1 and @Image2. When flying she leads with both fists straight out in front of her. Night, full moon, Sydney Harbour skyline, real ocean water, real spray, real rock, golden light and lightning. 35mm film grain. Sound: no music, thunder-crack, concussive boom, sonic whoosh, crashing spray, heavy impact, cracking stone.
+```
