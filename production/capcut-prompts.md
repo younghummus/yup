@@ -35,3 +35,23 @@ Medium-wide shot, static camera, no cuts, no zoom. Rocky shoreline at night, oce
 - If her armour or helmet drifts, regenerate with the reference images attached.
 - Put the three clips in order on the CapCut timeline; add a quick flash or whip
   transition between shot 1 → 2 and a hard cut into shot 3's impact.
+
+## v2 — single 15s generation (Seedance 2.5, 16:9, 15s)
+
+Fixes from take 1 (too slow; upright hovering pose with dangling legs and arms at
+her sides; head-on approach that never passes camera; walks in instead of landing):
+explicit real-time speed, locked superhero flight pose with both fists forward,
+side-angle pass, vertical drop for the landing.
+
+```
+Fast-paced action sequence, 15 seconds, three shots with hard cuts, real-time speed, NOT slow motion, photorealistic, 35mm film grain, night, full moon, Sydney Harbour skyline in the distance. The same valkyrie from the reference images in every shot: gold winged Spartan helmet with face hidden, long wavy strawberry-blonde hair, white breastplate with a crimson V, gold bracers and greaves, crimson pleated skirt, colossal white feathered wings four times her height.
+
+FLIGHT POSE whenever she flies: body horizontal and rigid like a missile, both arms locked straight out in front of her with both fists clenched and leading, head tucked between her arms, legs straight and together behind her, wings fully spread and held rigid, not flapping. Never upright, never hovering, legs never dangling.
+
+Shot 1 (0-3s), static low-angle camera over a dark ocean: a blazing golden ring portal tears open above the water with crackling lightning. In under one second she blasts out of the portal fists-first in the flight pose, straight at the camera, filling the frame. A shockwave slams the water flat. Extreme motion blur.
+
+Shot 2 (3-8s), camera locked low beside the water surface, static, side angle: she streaks across the frame from far left to right in the flight pose in about one second, fists leading, a few metres above the sea, and is gone. Her speed tears the ocean into a sharp V-shaped wake, walls of spray exploding up on both sides and hanging in the air after she passes. Golden light and lightning trail behind her. Violent camera shake as she passes.
+
+Shot 3 (8-15s), medium-wide static shot on a rocky shoreline: she plummets vertically from the top of the frame at full speed and slams down in a three-point crouch, fist to the ground, shattering the rock, a ring of dust and spray blasting outward. She rises into a battle stance, weight low, both fists raised, and her wings snap fully open, filling the frame edge to edge. Golden light pulses across her armour with small arcs of lightning.
+
+Sound: no music. Thunder-crack, concussive boom, sonic whoosh as she passes, crashing spray, heavy impact, cracking stone.
