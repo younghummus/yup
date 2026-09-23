@@ -55,3 +55,25 @@ Shot 2 (3-8s), camera locked low beside the water surface, static, side angle: s
 Shot 3 (8-15s), medium-wide static shot on a rocky shoreline: she plummets vertically from the top of the frame at full speed and slams down in a three-point crouch, fist to the ground, shattering the rock, a ring of dust and spray blasting outward. She rises into a battle stance, weight low, both fists raised, and her wings snap fully open, filling the frame edge to edge. Golden light pulses across her armour with small arcs of lightning.
 
 Sound: no music. Thunder-crack, concussive boom, sonic whoosh as she passes, crashing spray, heavy impact, cracking stone.
+
+## v3 — colossal wings (Seedance 2.5, 16:9, 10s, then speed-ramp)
+
+Take 2 was still slow and the wings came out ~her height. Generate at 10s and run
+`production/speedramp.sh` on the result. Wing size is described against real-world
+scale because the reference photos pull the model toward normal-sized wings.
+
+```
+Fast-paced action sequence, three shots with hard cuts, real-time speed, NOT slow motion, photorealistic, 35mm film grain, night, full moon, Sydney Harbour skyline in the distance. The same valkyrie from the reference images: gold winged Spartan helmet with face hidden, long wavy strawberry-blonde hair, white breastplate with a crimson V, gold bracers and greaves, crimson pleated skirt.
+
+COLOSSAL WINGS, much larger than in the reference images: each wing is longer than a bus, total wingspan eight times her body height, like a giant eagle's wings on a human. She looks small between her own wings. The wings always extend far beyond both edges of the frame.
+
+FLIGHT POSE whenever she flies: body horizontal and rigid like a missile, both arms locked straight out in front of her with both fists clenched and leading, legs straight together behind her, giant wings held rigid, not flapping. Never upright, never hovering.
+
+Shot 1: a blazing golden ring portal tears open above a dark ocean with crackling lightning; she blasts out of it fists-first in the flight pose, straight at the camera, in under one second. A shockwave slams the water flat.
+
+Shot 2: camera low beside the water, side angle: she streaks across the whole frame left to right in the flight pose in under one second and is gone, her giant wings spanning the full width of the ocean. The sea tears open into a V-shaped wake with walls of spray exploding up on both sides.
+
+Shot 3: rocky shoreline: she plummets vertically from the sky and slams into a three-point landing, shattering the rock, dust and spray blasting outward. She rises into a battle stance with both fists raised, and her colossal wings snap open, far wider than the frame.
+
+Sound: no music. Thunder-crack, concussive boom, sonic whoosh, crashing spray, heavy impact.
+```
