@@ -9,12 +9,17 @@ Three-shot cinematic sequence (15s total), produced with
 | 2 | Low ocean fly-by with V-wake | 5s | `shots/shot-2-ocean-flyby.txt` |
 | 3 | Shoreline landing, battle stance | 6s | `shots/shot-3-shoreline-landing.txt` |
 
+## Layout
+
+- `shots/` — one prompt per shot.
+- `reference/` — character images, mood image, previous motion take, and
+  `CHARACTER.md` (identity block to keep her consistent across shots).
+- `OpenMontage/` — production toolkit, pinned as a git submodule.
+
 ## Setup
 
+    git clone --recurse-submodules <this repo>   # or: ./setup.sh after a plain clone
     ./setup.sh
-
-Put the valkyrie character reference image in `reference/` (used for
-image-to-video / reference-to-video so she stays consistent across shots).
 
 A video-generation provider key is required (e.g. `FAL_KEY`, `ATLASCLOUD_API_KEY`,
 `ARK_API_KEY`, `KLING_API_KEY`) in OpenMontage's `.env`.
