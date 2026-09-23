@@ -26,3 +26,12 @@ Paste the **identity block** into every shot prompt (after the scene line) and a
 | `character/03-back-three-quarter.png` | Back view; wing attachment, hair, skirt from behind. |
 | `mood/colossal-portal-angel.jpg` | Mood/scale only (glowing portal ring, sense of colossal wings). Not the character. |
 | `motion/previous-take-shots-1-2.mov` | Earlier 6s take (1280x720, 24fps) covering shots 1→2: portal burst then a low skim over the ocean with a spray wake. Target for look and motion; the new take should be faster, with wider wings and a clearer V-wake. |
+
+## Unhelmeted (end reveal)
+| File | Use |
+|------|-----|
+| `character/05-face-golden-hair.png` | **Face reference** for the helmet-off reveal: long luscious golden hair, face. Cropped to exclude the wall text. |
+| `character/04-unhelmeted-full.png` | Full original (contains wall text — do not upload as a reference or the text may appear in the video). |
+
+Reveal look: golden glowing irises, brows low and furious, a bared-teeth snarl, hair
+whipping in the wind. Terrifying and intimidating, but beautiful.

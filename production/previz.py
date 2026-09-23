@@ -8,7 +8,8 @@ photos.
 
     python production/previz.py [out.mp4]
 
-Timeline: shot 1 portal burst 0-4s, shot 2 ocean fly-by 4-8s, shot 3 landing 8-15s.
+Timeline: shot 1 portal burst 0-4s, shot 2 ocean fly-by 4-7s, shot 3 landing + helmet
+off 7-12s, shot 4 close-up reveal (glowing golden eyes) 12-15s.
 """
 import math
 import random
@@ -29,6 +30,9 @@ WING = (250, 244, 232)
 RED = (170, 20, 30)
 SKIN = (225, 175, 140)
 HAIR = (215, 140, 80)
+GOLDHAIR = (240, 196, 100)
+EYE = (255, 215, 90)
+BROW = (110, 65, 35)
 
 
 def clamp(x, a=0.0, b=1.0):
@@ -140,7 +144,8 @@ def wing_pts(root, tip, up, n=9):
     return lead + trail
 
 
-def draw_figure(layer, glow, view, cx, cy, s, rot=0.0, wing_open=1.0, crouch=0.0, fists_up=0.0):
+def draw_figure(layer, glow, view, cx, cy, s, rot=0.0, wing_open=1.0, crouch=0.0, fists_up=0.0,
+                helmet=(0.0, 0.0), hands=None, revealed=False, sway=0.0, eye_glow=1.0):
     d = ImageDraw.Draw(layer)
     g = ImageDraw.Draw(glow)
     polys = []  # (points, colour, glows)
@@ -170,7 +175,7 @@ def draw_figure(layer, glow, view, cx, cy, s, rot=0.0, wing_open=1.0, crouch=0.0
         polys.append((ellipse_pts(0.48, -0.02, 0.08, 0.07), GOLD, True))  # helmet
         polys.append(([(0.45, -0.07), (0.38, -0.2), (0.5, -0.08)], GOLD, True))
         polys.append((wing_pts((0.2, 0.02), (-3.4, 1.7), 0.5), WING, True))  # near wing
-    else:  # "stand": front, shore; crouch 0..1, wing_open 0..1, fists_up 0..1
+    elif view == "stand":  # front, shore; crouch 0..1, wing_open 0..1, fists_up 0..1
         dy = 0.3 * crouch
         o = wing_open
         for sgn in (-1, 1):
@@ -185,23 +190,59 @@ def draw_figure(layer, glow, view, cx, cy, s, rot=0.0, wing_open=1.0, crouch=0.0
         polys.append((ellipse_pts(0, 0.05 + dy, 0.15, 0.08), RED, False))
         polys.append((ellipse_pts(0, -0.15 + dy, 0.13, 0.2), WHITE, False))
         polys.append(([(-0.1, -0.3 + dy), (0, -0.1 + dy), (0.1, -0.3 + dy), (0.05, -0.3 + dy), (0, -0.18 + dy), (-0.05, -0.3 + dy)], RED, False))
-        polys.append((ellipse_pts(0, -0.43 + dy, 0.14, 0.18), HAIR, False))
-        polys.append((ellipse_pts(0, -0.45 + dy, 0.08, 0.1), GOLD, True))
+        if revealed:  # helmet off: big golden hair, face, glowing eyes, angry brows
+            polys.append((ellipse_pts(sway, -0.43 + dy, 0.12, 0.13), GOLDHAIR, True))
+            for sgn in (-1, 1):  # long hair flowing down over the shoulders
+                polys.append(([(0.06 * sgn, -0.5 + dy), (0.13 * sgn + sway, -0.46 + dy), (0.2 * sgn + 2 * sway, -0.12 + dy),
+                               (0.12 * sgn + sway, -0.18 + dy), (0.06 * sgn, -0.36 + dy)], GOLDHAIR, True))
+            polys.append((ellipse_pts(0, -0.45 + dy, 0.07, 0.09), SKIN, False))
+            for sgn in (-1, 1):
+                polys.append((ellipse_pts(0.028 * sgn, -0.465 + dy, 0.016, 0.009), EYE, True))
+                polys.append(([(0.012 * sgn, -0.478 + dy), (0.05 * sgn, -0.492 + dy), (0.05 * sgn, -0.486 + dy), (0.012 * sgn, -0.472 + dy)], BROW, False))
+        else:
+            polys.append((ellipse_pts(0, -0.43 + dy, 0.14, 0.18), HAIR, False))
         for sgn in (-1, 1):
-            polys.append(([(0.06 * sgn, -0.5 + dy), (0.16 * sgn, -0.66 + dy), (0.1 * sgn, -0.48 + dy)], GOLD, True))
             sh = (0.15 * sgn, -0.3 + dy)
-            if sgn > 0 and crouch > 0.5:  # three-point landing: right fist on the ground
+            if hands is not None:
+                fist = hands[0] if sgn < 0 else hands[1]
+            elif sgn > 0 and crouch > 0.5:  # three-point landing: right fist on the ground
                 fist = (0.25, 0.5)
             else:
                 fist = (0.14 * sgn, -0.02 + dy - 0.3 * fists_up)
             polys.append(([sh, (sh[0] + 0.05 * sgn, sh[1]), (fist[0] + 0.03 * sgn, fist[1]), (fist[0] - 0.03 * sgn, fist[1])], SKIN, False))
             polys.append((ellipse_pts(fist[0], fist[1], 0.05, 0.05), GOLD, True))
+        if helmet is not None:  # helmet offset from its seat on the head
+            hx, hy = helmet[0], helmet[1] - 0.45 + (dy if helmet == (0.0, 0.0) else 0)
+            polys.append((ellipse_pts(hx, hy, 0.08, 0.1), GOLD, True))
+            for sgn in (-1, 1):
+                polys.append(([(hx + 0.06 * sgn, hy - 0.05), (hx + 0.16 * sgn, hy - 0.21), (hx + 0.1 * sgn, hy - 0.03)], GOLD, True))
+
+    elif view == "closeup":  # face reveal; units: face height ~1
+        for sgn in (-1, 1):
+            polys.append((wing_pts((0.8 * sgn, 1.2), (4.6 * sgn, -1.6), -0.7), WING, True))
+        polys.append((ellipse_pts(sway * 0.5, 0.1, 1.0, 1.25, 24), GOLDHAIR, True))
+        for sgn in (-1, 1):  # windswept strands
+            polys.append(([(0.55 * sgn, -0.6), (1.25 * sgn + sway, -0.3), (1.55 * sgn + 2 * sway, 0.5), (1.05 * sgn + sway, 1.45), (0.6 * sgn, 0.7)], GOLDHAIR, True))
+        for sgn in (-1, 1):
+            polys.append((ellipse_pts(1.15 * sgn, 1.75, 0.6, 0.35), GOLD, True))
+        polys.append(([(-0.9, 1.45), (0.9, 1.45), (0.75, 2.6), (-0.75, 2.6)], WHITE, False))
+        polys.append(([(-0.7, 1.5), (0, 2.3), (0.7, 1.5), (0.45, 1.5), (0, 2.0), (-0.45, 1.5)], RED, False))
+        polys.append(([(-0.22, 0.6), (0.22, 0.6), (0.26, 1.5), (-0.26, 1.5)], SKIN, False))
+        polys.append((ellipse_pts(0, 0, 0.62, 0.85, 24), SKIN, False))
+        for sgn in (-1, 1):
+            polys.append((ellipse_pts(0.26 * sgn, -0.05, 0.13, 0.055), EYE, True))
+            polys.append(([(0.08 * sgn, -0.16), (0.45 * sgn, -0.3), (0.45 * sgn, -0.24), (0.08 * sgn, -0.1)], BROW, False))
+        polys.append(([(-0.04, 0.0), (0.0, 0.28), (0.06, 0.26)], (200, 150, 120), False))
+        polys.append(([(-0.22, 0.47), (0.22, 0.47), (0.16, 0.56), (-0.16, 0.56)], (120, 30, 35), False))
+        polys.append(([(-0.15, 0.48), (0.15, 0.48), (0.15, 0.5), (-0.15, 0.5)], (240, 235, 225), False))
+        for sgn in (-1, 1):  # front strands over the face edges
+            polys.append(([(0.35 * sgn, -0.8), (0.7 * sgn, -0.7), (0.75 * sgn + sway, 0.5), (0.55 * sgn, 0.2)], GOLDHAIR, True))
 
     for pts, col, glows in polys:
         p = tf(pts, cx, cy, s, rot)
         d.polygon(p, fill=col + (255,))
         if glows:
-            g.polygon(p, fill=255)
+            g.polygon(p, fill=255 if col != EYE else int(255 * clamp(eye_glow)))
         if col in (WING, (215, 208, 196)) and s > 20:
             half = len(p) // 2
             lw = max(1, int(s / 90))
@@ -250,6 +291,7 @@ class Spray:
 # ---------------------------------------------------------------- shots
 BG1 = sky_and_sea(420)
 BG3 = sky_and_sea(400, rocks=True)
+BG3_SOFT = BG3.filter(ImageFilter.GaussianBlur(10)).point(lambda v: int(v * 0.8))
 spray2 = Spray()
 dust3 = Spray()
 _last = {"t": -1}
@@ -291,7 +333,7 @@ def frame(t):
             shake = 14 * seg(t, 2.8, 3.3)
         flash = max(flash, seg(t, 3.25, 3.5) * (1 - seg(t, 3.7, 4.0)))
         layers = [fx, fig]
-    elif t < 8.0:  # ---- shot 2: low side-angle fly-by
+    elif t < 7.0:  # ---- shot 2: fly-by past a low camera
         lt = t - 4.0
         img = BG1.copy()
         fig = Image.new("RGBA", (W, H), (0, 0, 0, 0))
@@ -321,44 +363,85 @@ def frame(t):
         fx.alpha_composite(sp.filter(ImageFilter.GaussianBlur(2)))
         shake = 16 * seg(lt, 1.3, 1.8) * (1 - seg(lt, 2.2, 3.0))
         layers = [fig, fx]
-    else:  # ---- shot 3: shoreline landing
-        lt = t - 8.0
+    elif t < 12.0:  # ---- shot 3: shoreline landing, helmet comes off
+        lt = t - 7.0
         img = BG3.copy()
         fig = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         glow = Image.new("L", (W, H))
         fx = Image.new("RGBA", (W, H), (0, 0, 0, 0))
         d = ImageDraw.Draw(fx)
         dt = 1 / FPS
-        if _last["t"] < 8.0:
+        if _last["t"] < 7.0:
             dust3.p.clear()
-        gx, gy, S = 640, 600, 250  # feet position and body scale
+        gx, gy, S = 640, 650, 330  # feet position and body scale
         cy = gy - 0.55 * S
-        if lt < 0.9:  # plummet from above, fist down, wings swept up
-            k = ease_in(seg(lt, 0.3, 0.9))
-            if lt > 0.3:
+        if lt < 0.7:  # plummet from above, fist down, wings swept up
+            k = ease_in(seg(lt, 0.2, 0.7))
+            if lt > 0.2:
                 yy = -400 + (cy + 400) * k
-                draw_figure(fig, glow, "stand", gx, yy, S, wing_open=0.0, crouch=0.6, fists_up=0)
+                draw_figure(fig, glow, "stand", gx, yy, S, wing_open=0.0, crouch=0.6)
                 ImageDraw.Draw(glow).line([(gx, 0), (gx, yy)], fill=200, width=30)
         else:
-            crouch = 1.0 - ease_out(seg(lt, 1.8, 2.8))
-            wo = ease_out(seg(lt, 2.9, 3.5)) * (1 - 0.04 * seg(lt, 3.5, 4.0) * (0.5 + 0.5 * math.sin(lt * 2.2)))
-            fu = ease_out(seg(lt, 2.2, 2.9))
+            rise = ease_out(seg(lt, 1.3, 2.0))
+            crouch = 1.0 - rise + 0.35 * ease_out(seg(lt, 3.5, 3.9))  # back down into an aggressive stance
+            dyb = 0.3 * crouch
+            wo = ease_out(seg(lt, 1.9, 2.4))
+            # helmet off: hands up (2.4-2.7), lift (2.7-3.05), fling right (3.05-3.35), drop
+            up = ease_out(seg(lt, 2.4, 2.7))
+            lift = ease_out(seg(lt, 2.7, 3.05))
+            fling = ease_out(seg(lt, 3.05, 3.35))
+            rest_l, rest_r = (-0.14, -0.02 + dyb), (0.14, -0.02 + dyb)
+            head_l, head_r = (-0.1, -0.47 + dyb - 0.35 * lift), (0.1, -0.47 + dyb - 0.35 * lift)
+            fling_r = (0.55, -0.55)
+            fierce_l, fierce_r = (-0.22, -0.12 + dyb), (0.22, -0.12 + dyb)  # fists clenched, forward
+            fierce = ease_out(seg(lt, 3.35, 3.9))
+            lerp = lambda p, q, k: (p[0] + (q[0] - p[0]) * k, p[1] + (q[1] - p[1]) * k)
+            hl = lerp(lerp(rest_l, head_l, up), fierce_l, max(fling, fierce))
+            hr = lerp(lerp(lerp(rest_r, head_r, up), fling_r, fling), fierce_r, fierce)
+            revealed = lift > 0.4
+            if lt < 2.7:
+                helmet = (0.0, 0.0)
+            elif lt < 3.35:
+                helmet = (hr[0] - 0.1 * (1 - fling), hr[1] + 0.02 + 0.45)
+            else:  # released: arcs out and falls to the rocks
+                ft = lt - 3.35
+                helmet = (0.55 + 1.2 * ft, -0.55 + 0.45 - 1.0 * ft + 6.0 * ft * ft)
+                helmet = (helmet[0], min(helmet[1], 0.95))
+            sway = 0.03 * math.sin(lt * 7)
+            draw_figure(fig, glow, "stand", gx, cy, S, wing_open=wo, crouch=crouch,
+                        helmet=helmet, hands=(hl, hr), revealed=revealed, sway=sway,
+                        eye_glow=seg(lt, 3.0, 3.4))
             pulse = 0.5 + 0.5 * math.sin(lt * 5)
-            draw_figure(fig, glow, "stand", gx, cy, S, wing_open=wo, crouch=crouch, fists_up=fu)
-            if lt > 3.5:
+            if lt > 2.4:
                 for _ in range(2):
-                    a = (gx + rnd.uniform(-0.3, 0.3) * S, cy + rnd.uniform(-0.5, 0.3) * S)
-                    lightning(d, a, (a[0] + rnd.uniform(-60, 60), a[1] + rnd.uniform(-60, 60)), rnd, width=2, jag=10)
-            if 0.9 <= lt < 0.9 + dt * 1.5:
-                dust3.emit(gx, gy, 260, rnd, spread=22, up=9, size=14)
+                    a0 = (gx + rnd.uniform(-0.3, 0.3) * S, cy + rnd.uniform(-0.5, 0.3) * S)
+                    lightning(d, a0, (a0[0] + rnd.uniform(-60, 60), a0[1] + rnd.uniform(-60, 60)), rnd, width=2, jag=10)
+            if 0.7 <= lt < 0.7 + dt * 1.5:
+                dust3.emit(gx, gy, 220, rnd, spread=26, up=16, size=12)
                 for i in range(9):  # cracks
-                    a = rnd.uniform(0, math.pi)
-                    ImageDraw.Draw(BG3).line([(gx, gy), (gx + 300 * math.cos(a), gy + 40 * math.sin(a))], fill=(12, 12, 14), width=3)
-            flash = 0.8 * (1 - seg(lt, 0.9, 1.2))
-            shake = 18 * (1 - seg(lt, 0.9, 1.6))
+                    a0 = rnd.uniform(0, math.pi)
+                    ImageDraw.Draw(BG3).line([(gx, gy), (gx + 300 * math.cos(a0), gy + 40 * math.sin(a0))], fill=(12, 12, 14), width=3)
+            flash = 0.8 * (1 - seg(lt, 0.7, 1.0))
+            shake = 18 * (1 - seg(lt, 0.7, 1.4))
             glow = Image.eval(glow, lambda v: int(v * (0.7 + 0.3 * pulse)))
         dust3.step(dt)
         dust3.draw(d)
+        layers = [fig, fx]
+    else:  # ---- shot 4: close-up reveal, glowing golden eyes
+        lt = t - 12.0
+        img = BG3_SOFT.copy()
+        fig = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        glow = Image.new("L", (W, H))
+        fx = Image.new("RGBA", (W, H), (0, 0, 0, 0))
+        d = ImageDraw.Draw(fx)
+        sc = 230 + 30 * ease_out(seg(lt, 0, 3))  # slow push-in
+        sway = 0.12 * math.sin(lt * 6) + 0.06 * math.sin(lt * 13)
+        eg = 0.6 + 0.4 * seg(lt, 0.2, 0.6) + 0.2 * math.sin(lt * 9)
+        draw_figure(fig, glow, "closeup", 640, 330, sc, rot=-0.03, sway=sway, eye_glow=eg)
+        for _ in range(3):
+            a0 = (640 + rnd.uniform(-1.8, 1.8) * sc, 330 + rnd.uniform(0.8, 2.2) * sc)
+            lightning(d, a0, (a0[0] + rnd.uniform(-90, 90), a0[1] + rnd.uniform(-90, 90)), rnd, width=2, jag=12)
+        flash = 0.5 * (1 - seg(lt, 0.0, 0.25))
         layers = [fig, fx]
 
     _last["t"] = t
@@ -378,7 +461,7 @@ def frame(t):
 
 
 def fast(t):
-    return 1.4 < t < 3.4 or 5.2 < t < 6.1 or 8.3 < t < 9.0
+    return 1.4 < t < 3.4 or 5.2 < t < 6.1 or 7.2 < t < 7.8 or 10.0 < t < 10.4
 
 
 def main():

@@ -106,3 +106,19 @@ video's motion far more strictly than words, so it only has to make it photoreal
 ```
 Remake @Video1 as photorealistic live-action cinema. Copy @Video1 exactly: the same three shots, the same cuts, the same timing, the same camera positions, the same speed of every movement, the same poses and the same wing size. Do not slow anything down. The flat cartoon figure in @Video1 is the valkyrie from @Image1, @Image2 and @Image3: gold winged Spartan helmet, face hidden, long wavy strawberry-blonde hair, white breastplate with a crimson V, crimson pleated skirt, gold bracers and greaves, colossal white feathered wings as huge as in @Image1 and @Image2. When flying she leads with both fists straight out in front of her. Night, full moon, Sydney Harbour skyline, real ocean water, real spray, real rock, golden light and lightning. 35mm film grain. Sound: no music, thunder-crack, concussive boom, sonic whoosh, crashing spray, heavy impact, cracking stone.
 ```
+
+## v5 — previz + helmet-off reveal ending
+
+New timeline in `renders/valkyrie-previz.mp4`: portal burst 0-4s, fly-by 4-7s,
+landing 7-12s (wings open, she tears her helmet off and flings it onto the rocks,
+drops into an aggressive stance), close-up reveal 12-15s.
+
+**CapCut:** Seedance 2.5 · 15s · 16:9. Attach, in this order:
+1. `renders/valkyrie-previz.mp4` → @Video1
+2. `reference/stills/huge-wings-flying.jpg` → @Image1
+3. `reference/stills/huge-wings-stance.jpg` → @Image2
+4. `reference/character/05-face-golden-hair.png` → @Image3 (her face)
+
+```
+Remake @Video1 as photorealistic live-action cinema. Copy @Video1 exactly: the same shots, cuts, timing, camera positions, speed of every movement, poses and wing size. Do not slow anything down. The flat cartoon figure is the valkyrie from @Image1 and @Image2: gold winged Spartan helmet, white breastplate with a crimson V, crimson pleated skirt, gold bracers and greaves, colossal white feathered wings as huge as in @Image1. When flying she leads with both fists straight out in front of her. Night, full moon, Sydney Harbour skyline, real ocean, real spray, real rock, golden light and lightning. After landing she rips her helmet off and flings it onto the rocks, revealing the woman from @Image3: long luscious golden hair whipping in the wind and glowing golden eyes. She drops into an aggressive battle stance, fists clenched. Final close-up: her glowing golden eyes blaze, brows low and furious, teeth bared in a snarl, lightning crackling around her. Terrifying and intimidating, yet breathtakingly beautiful. No text anywhere. 35mm film grain. Sound: no music, thunder-crack, concussive boom, sonic whoosh, crashing spray, heavy impact, helmet clanging on rock, a low growl.
+```
