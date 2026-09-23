@@ -122,3 +122,15 @@ drops into an aggressive stance), close-up reveal 12-15s.
 ```
 Remake @Video1 as photorealistic live-action cinema. Copy @Video1 exactly: the same shots, cuts, timing, camera positions, speed of every movement, poses and wing size. Do not slow anything down. The flat cartoon figure is the valkyrie from @Image1 and @Image2: gold winged Spartan helmet, white breastplate with a crimson V, crimson pleated skirt, gold bracers and greaves, colossal white feathered wings as huge as in @Image1. When flying she leads with both fists straight out in front of her. Night, full moon, Sydney Harbour skyline, real ocean, real spray, real rock, golden light and lightning. After landing she rips her helmet off and flings it onto the rocks, revealing the woman from @Image3: long luscious golden hair whipping in the wind and glowing golden eyes. She drops into an aggressive battle stance, fists clenched. Final close-up: her glowing golden eyes blaze, brows low and furious, teeth bared in a snarl, lightning crackling around her. Terrifying and intimidating, yet breathtakingly beautiful. No text anywhere. 35mm film grain. Sound: no music, thunder-crack, concussive boom, sonic whoosh, crashing spray, heavy impact, helmet clanging on rock, a low growl.
 ```
+
+## v6 — helmet slammed down + Saiyan power-up ending
+
+Previz (`renders/valkyrie-previz.mp4`): portal burst 0-4s, fly-by 4-7s, landing 7-12s
+(wings open, helmet ripped off and slammed into the rock at her feet, then she powers up:
+fists clenched at her hips, knees bent, golden aura erupting, hair spiking upward, rocks
+floating up, glowing cracks, lightning), close-up full-power scream 12-15s.
+Same attachments as v5.
+
+```
+Remake @Video1 as photorealistic live-action cinema. Copy @Video1 exactly: the same shots, cuts, timing, camera positions, speed of every movement, poses and wing size. Do not slow anything down. The flat cartoon figure is the valkyrie from @Image1 and @Image2: gold winged Spartan helmet, white breastplate with a crimson V, crimson pleated skirt, gold bracers and greaves, colossal white feathered wings as huge as in @Image1. When flying she leads with both fists straight out in front of her. Night, full moon, Sydney Harbour skyline, real ocean, real spray, real rock. After landing she rips her helmet off and slams it down into the rock at her feet, revealing the woman from @Image3 with long luscious golden hair and glowing golden eyes. Then she powers up like a Super Saiyan: knees bent, fists clenched at her hips, every muscle tensed, a blazing golden flame aura erupts around her, her golden hair lifts and spikes upward, rocks tear loose and float into the air, the ground cracks with glowing gold light, lightning crackles all over her body, wind blasts outward. Final close-up: she screams with full power, glowing golden eyes blazing, hair spiked and glowing, aura roaring, lightning everywhere. Terrifying and intimidating, yet breathtakingly beautiful. No text anywhere. 35mm film grain. Sound: no music, thunder-crack, concussive boom, sonic whoosh, crashing spray, heavy impact, metal helmet smashing into rock, rising energy roar, a fierce battle scream.
+```
