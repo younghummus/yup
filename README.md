@@ -1,5 +1,9 @@
 # Valkyrie Portal Sequence
 
+> Also in this repo: **[Mind Over Matter — Rad Cat Remix](remix/README.md)**, a
+> future bass fan remix (personal use) generated in code. Listen:
+> [`renders/mind-over-matter-rad-cat-remix.mp3`](renders/mind-over-matter-rad-cat-remix.mp3).
+
 Three-shot cinematic sequence (15s total), produced with
 [OpenMontage](https://github.com/calesthio/OpenMontage) via its `cinematic` pipeline.
 
